@@ -10,5 +10,7 @@
 
 5:Create Design and some feature in frontend with vuejs 
 
+6:Testing in Excel.
+
 
 REMARK: Need to adds data and extends with some features for perfect one... 
