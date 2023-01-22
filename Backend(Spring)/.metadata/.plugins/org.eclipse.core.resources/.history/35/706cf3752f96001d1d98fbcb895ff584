@@ -1,0 +1,164 @@
+package com.BScampOTJ.BRG.entity;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.ColumnDefault;
+
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+//import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Restaurant {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@Column(length = 20, nullable = false)
+	private String restaurantName;
+	
+	@Column(length = 11, nullable = false)
+	@NotBlank(message = "Required")
+	private String phone;
+	
+	@Column(length = 50, nullable = true)
+	private String address;
+	
+	@Column(length = 5000)
+	private String overview;
+	
+	@Column(length = 200)
+	@NotBlank(message = "Required")
+	private String picPath;
+	
+	@Column(nullable = false) 
+	@ColumnDefault("CURRENT_TIMESTAMP")
+	private LocalDateTime createdAt;
+	
+	private LocalDateTime updatedAt;
+	
+	@ManyToOne
+	@JoinColumn(name = "divisionMstate_id", referencedColumnName = "id")
+	private DivisionMState divisionMstate;
+	
+	
+	private Restaurant() {
+		
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getRestaurantName() {
+		return restaurantName;
+	}
+
+
+	public void setRestaurantName(String restaurantName) {
+		this.restaurantName = restaurantName;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getOverview() {
+		return overview;
+	}
+
+
+	public void setOverview(String overview) {
+		this.overview = overview;
+	}
+
+
+	public String getPicPath() {
+		return picPath;
+	}
+
+
+	public void setPicPath(String picPath) {
+		this.picPath = picPath;
+	}
+
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+
+	public DivisionMState getDivisionMstate() {
+		return divisionMstate;
+	}
+
+
+	public void setDivisionMstate(DivisionMState divisionMstate) {
+		this.divisionMstate = divisionMstate;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Restaurant [id=" + id + ", restaurantName=" + restaurantName + ", phone=" + phone + ", address="
+				+ address + ", overview=" + overview + ", picPath=" + picPath + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + ", divisionMstate=" + divisionMstate + "]";
+	}
+
+}
