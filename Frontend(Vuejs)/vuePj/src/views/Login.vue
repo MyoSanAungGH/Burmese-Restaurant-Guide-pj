@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-container fluid>
-
       <v-row align="center" justify="center" dense>
         <v-img src="@/assets/logo2.jpg" max-width="30%" sizes="60%"></v-img>
       </v-row>
@@ -77,14 +76,14 @@
 import utils from "@/utils/utils";
 
 export default {
-  name: "Login",
+  name: "login",
 
   components: {},
 
   data() {
     return {
       loginForm: false,
-      gmail: "@gmail.com",
+      gmail: "jk@gmail.com",
       password: "1111",
       errorAlert: false,
       loading: false,

@@ -1,4 +1,6 @@
+import router from '@/router';
 import Vue from 'vue'
+import { RouterLink } from 'vue-router';
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
@@ -44,7 +46,7 @@ export default new Vuex.Store({
     logout(state){
       sessionStorage.removeItem("loginUser");
       sessionStorage.removeItem("isLogin");
-      state.loginUser={ };
+      state.loginUser={};
       state.isLogin= false;
     }
   },

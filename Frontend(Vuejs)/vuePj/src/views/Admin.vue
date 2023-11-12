@@ -38,7 +38,7 @@
               x-small
               elevation="20"
               @click="
-                toDeleteRestaurant = item;
+              toDeleteRestaurant = item;
                 deleteDialog = true;
               "
             >
@@ -161,6 +161,7 @@
               @change="onChangePicture"
             ></v-file-input>
 
+            <!--Preview pic -->
             <v-img
               v-if="picturePreviewPath == null"
               :src="localDomain + toUpdateRestaurant.picPath"
@@ -170,6 +171,7 @@
             >
             </v-img>
 
+             <!--selected pic -->
             <v-img
               v-if="picturePreviewPath != null"
               :src="picturePreviewPath"
@@ -235,15 +237,17 @@ export default {
       restaurantForm: false,
 
       toDeleteRestaurant: {},
+
       toUpdateRestaurant: {
         restaurantName: " ",
         phone: " ",
         address: " ",
+        overview: " ",
+        divisionMstate: " " ,
         picture: " ",
         picPath: " ",
-        divisionMstate: " " ,
-        overview: " ",
       },
+
       picturePreviewPath: null,
       errorAlert: false,
       loading: false,
@@ -294,7 +298,10 @@ export default {
       this.updateDialog = true;
       this.toUpdateRestaurant = Object.assign({}, item);
       this.toUpdateRestaurant.picture = null;
-      this.picturePreviewPath = null;
+    }, 
+    
+    onChangePicture(picture) {
+      this.picturePreviewPath = URL.createObjectURL(picture);
     },
 
     async updateRestaurant() {
@@ -304,6 +311,7 @@ export default {
 
         let picPath= this.toUpdateRestaurant.picPath;
 
+        //Update Picture
         //null> picture is not select
         if (this.toUpdateRestaurant.picture != null) {
           const respPicture = await utils.http.putMedia(
@@ -321,6 +329,7 @@ export default {
           
         }
 
+        //Update Restaurant
         const respRestaurant = await utils.http.put(
           "/admin/restaurant/update/" + this.toUpdateRestaurant.id,
           {
@@ -344,9 +353,7 @@ export default {
       }
     },
 
-    onChangePicture(picture) {
-      this.picturePreviewPath = URL.createObjectURL(picture);
-    },
+   
   },
 };
 </script>

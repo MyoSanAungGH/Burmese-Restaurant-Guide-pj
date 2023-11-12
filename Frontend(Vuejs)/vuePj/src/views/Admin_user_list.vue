@@ -9,7 +9,7 @@
             <v-data-table
             :headers="headers"
             :items="userList"
-            :items-per-page="4"
+            :items-per-page="10"
             class="elevation-1">
 
             <!-- <template v-slot:item.actions="{item}">
@@ -104,8 +104,7 @@ export default {
     async fetchUser(){
         const resp = await utils.http.get("/admin/user");
         if(resp && resp.status === 200){
-            const data = await resp.json();
-            console.log(data)
+            const data = await resp.json(); 
             if(data){
                 this.userList = data;
             }

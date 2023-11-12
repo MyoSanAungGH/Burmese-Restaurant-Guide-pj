@@ -1,34 +1,42 @@
 <template>
   <v-app-bar app style="background-color: slategrey">
-    <!-- <a class="navtitle" href="/">Restaurant</a>-->
-
-    <router-link class="navlink ml-2" to="/">Home</router-link> 
-    <v-spacer></v-spacer><v-spacer></v-spacer>
+    <a class="navtitle" href="/">All Restaurant</a>
+    
+    <v-spacer></v-spacer>
 
     <v-row justify="center">
             <div class="wrapper">
-              <p class="animation text-h5 mt-2">Restaurant Guide</p>
+              <p class="animation text-h5 mt-2">Burmese Restaurant Guide</p>
             </div>
-          </v-row>
+    </v-row>
 
     <v-spacer></v-spacer>
+
+    <!-- <router-link class="navlink ml-2" to="/">Home</router-link>  -->
+
+    <!-- <span v-if="!isLogin" class="mx-2 navlink ">|</span> -->
     
     <router-link v-if="!isLogin" class="mx-2 navlink" to="/register"
       >Register</router-link
     >
 
-    <span v-if="!isLogin" class="mx-2 navlink ">|</span>
-    <router-link v-if="!isLogin" class="mx-2 navlink" to="/login"
+    <!-- <span v-if="!isLogin" class="mx-2 navlink ">|</span> -->
+    <router-link v-if="!isLogin" class="mx-5 navlink" to="/login"
       >Login</router-link
     >
 
-    <span class="navlink ml-2" v-if="!isLogin"></span>
+
     <router-link v-if="isLogin" class="mx-2 navlink" to="/profile"
       >Profile</router-link
     >
 
-    <span class="navlink ml-2" v-if="isLogin"></span>
-    <a v-if="isLogin" class="mx-2 navlink" @click="logout()">Logout</a>
+    <!-- <span class="navlink ml-2" v-if="isLogin"></span> -->
+<!-- 
+    <router-link v-if="isLogin" class="mx-2 navlink" to="/about"
+      >About</router-link
+    > -->
+
+    <a v-if="isLogin" class="mx-2 navlink" @click="logout()">LogOut</a>
   </v-app-bar>
 </template>
 
@@ -74,9 +82,10 @@ export default {
   methods: {
     logout() {
       this.$store.commit("logout");
-      if (this.$route.path != "/") {
-        this.$router.push({ path: "/" });
-      }
+      if(this.$route.path != "/"){
+      this.$router.push({path:"/"});
+    }
+
     },
   },
 };
@@ -85,8 +94,10 @@ export default {
 <style scoped>
 .navlink {
   color:darkblue;
-  font-size: large;
+  font-size:x-large;
+  font-weight:bold;
   text-decoration: wavy;
+
 }
 
 .navlink:hover {
@@ -96,10 +107,11 @@ export default {
 }
 
 .navtitle {
-  color:red;
-  font-size: large;
+  color:rgb(60, 0, 255);
+  font-size:x-large;
   text-decoration:none;
   cursor: pointer !important;
+  margin-left: 20px;
 }
 
 .wrapper{
