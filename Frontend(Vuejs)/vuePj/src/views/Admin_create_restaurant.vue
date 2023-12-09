@@ -142,6 +142,7 @@ export default {
       
       picture: null,
       picturePreviewPath: null,
+      
       divisionMStateList: [],
     };
   },

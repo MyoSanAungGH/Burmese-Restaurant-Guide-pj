@@ -124,6 +124,7 @@ export default {
       status: "",
       gmail: "aungaung@gmail.com",
       password: "1111",
+      
       registerForm: false,
       loading: false,
       errorAlert: false,
@@ -153,7 +154,7 @@ export default {
           const data = await resp.json();
           if (data) {
             this.$store.commit("setLoginUser", data);
-            if (data.role == "admin") {
+            if (data.role === "admin") {
               this.$router.push({ path: "/admin" });
             } else {
               this.$router.push({ path: "/" });

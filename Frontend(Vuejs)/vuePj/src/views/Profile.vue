@@ -171,8 +171,7 @@ export default {
         this.errorAlert = false;
         this.loading = true;
 
-        const respUpdateUser = await utils.http.put(
-            "/user/profile/update" ,
+        const respUpdateUser = await utils.http.put("/user/profile/update" ,
         {
           id: this.loginUser.id,
           name: this.toUpdateProfile.name,

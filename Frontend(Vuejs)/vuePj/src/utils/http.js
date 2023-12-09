@@ -15,10 +15,6 @@ async function get(path) {
 
 async function post(path, body) {
 
-  // console.log(path),
-  // console.log(body),
-  // console.log(constant.localDomain)
-
   const resp = await fetch(constant.localDomain + path, {
     method: "POST",
     headers: {

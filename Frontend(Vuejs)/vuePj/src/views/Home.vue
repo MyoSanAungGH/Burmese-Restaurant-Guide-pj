@@ -42,11 +42,11 @@
       <v-col cols="9">
         <v-row>
           <v-col
-            cols="4"
+            cols="3"
             v-for="(restaurant, index) in restaurantList"
             :key="index"
           >
-            <v-card @click="gotoRestaurantDetail(restaurant)" height="400">
+            <v-card @click="goToRestaurantDetail(restaurant)" height="380">
               <v-card-text>
                 <v-img
                   :src="localDomain + restaurant.picPath"
@@ -114,14 +114,15 @@ export default {
         const data = await resp.json();
         if (data) {
           this.restaurantList = data;
-        }
+        } 
       }
     },
 
-    async gotoRestaurantDetail(restaurant) {
-      this.$router.push({
-        path: "/restaurant_details/" + restaurant.id,
-      });
+    goToRestaurantDetail(restaurant) {
+            this.$router.push({
+            path: "/restaurant_details/" + restaurant.id,
+          });
+      
     },
 
     async onClickDivision(division) {

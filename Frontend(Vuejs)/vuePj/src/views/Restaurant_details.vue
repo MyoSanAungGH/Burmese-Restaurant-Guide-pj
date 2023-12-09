@@ -1,37 +1,46 @@
 <template>
-  <div style="background-color: beige;">
+  <div style="background-color: beige">
     <v-row justify="center">
       <v-col cols="9">
         <v-card width="100%">
           <v-card-text>
-            <div class="pa-auto" 
-            style="font-family:cursive; font-weight: 700; font-size: large; text-decoration: wavy; color: goldenrod;">
-            {{ restaurant.restaurantName }} Restaurantမှ လှိုက်လဲစွာကြိုဆိုပါတယ်....
+            <div
+              class="pa-auto"
+              style="
+                font-family: cursive;
+                font-weight: 700;
+                font-size: large;
+                text-decoration: wavy;
+                color: goldenrod;
+              "
+            >
+              {{ restaurant.restaurantName }} Restaurantမှ
+              လှိုက်လဲစွာကြိုဆိုပါတယ်....
             </div>
-            
+
             <v-row class="py-4">
               <v-col cols="6">
-                <div style="font-weight: bold; font-style: oblique"
-                >
+                <div style="font-weight: bold; font-style: oblique">
                   <v-icon class="mr-1 ml-10"> mdi-map-marker</v-icon>
-                  {{ restaurant.address }} 
+                  {{ restaurant.address }}
                 </div>
               </v-col>
 
               <v-col cols="6">
-                <div style="font-weight: bold; font-style: oblique"
-                >
+                <div style="font-weight: bold; font-style: oblique">
                   <v-icon class="mr-2">mdi-phone-classic</v-icon>
                   {{ restaurant.phone }}
                 </div>
               </v-col>
             </v-row>
 
+
             <v-img
               class="ma-0"
               :src="localDomain + restaurant.picPath"
               contain
             ></v-img>
+
           </v-card-text>
         </v-card>
       </v-col>
@@ -46,7 +55,6 @@
     <v-row class="mt-10">
       <v-divider light></v-divider>
     </v-row>
-    
 
     <v-row justify="center">
       <div class="wrapper">
@@ -55,31 +63,36 @@
     </v-row>
 
     <v-row class="mt-10">
-    <v-container class="">
-    <v-row>
-      <v-col cols="3"
-      v-for="(menu, index) in menuList"
-      :key="index"
-      ><v-card hover >
-        <v-card-text>
-          <v-img
-          :src="localDomain + menu.menuPath"
-          max-height="200"
-          cover
-          ></v-img>
-          <div class="text-h5 pt-5" style="font-family: cursive; color: saddlebrown;">
+      <v-container class="">
+        <v-row>
+          <v-col cols="3" v-for="(menu, index) in menuList" 
+          :key="index"
+            ><v-card hover>
+              <v-card-text>
+                <v-img
+                  :src="localDomain + menu.menuPath"
+                  max-height="200"
+                  cover
+                ></v-img>
+                <div
+                  class="text-h5 pt-5"
+                  style="font-family: cursive; color: saddlebrown"
+                >
                   {{ menu.name }}
-          </div>
-          <div class="text-h5 pt-5" style="font-family: cursive; color: saddlebrown;">
-                  {{ menu.price }}kyat</div>
-        </v-card-text>
-      </v-card>
-      </v-col>
+                </div>
+                <div
+                  class="text-h5 pt-5"
+                  style="font-family: cursive; color: saddlebrown"
+                >
+                  {{ menu.price }}kyat
+                </div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-row>
-  </v-container>
-  </v-row>
-
-    </div>
+  </div>
 </template>
 
 <script>
@@ -95,7 +108,7 @@ export default {
       restaurant_id: this.$route.params.id,
       loginUser: {},
       restaurant: {},
-      menuList:[],
+      menuList: [],
     };
   },
 
@@ -129,23 +142,23 @@ export default {
       }
     },
 
-    async fetchMenuList(){
-      const resp = await utils.http.get("/api/menu/restaurant/" + this.restaurant_id);
-      if(resp && resp.status === 200){
+    async fetchMenuList() {
+      const resp = await utils.http.get(
+        "/menu/restaurant/" + this.restaurant_id
+      );
+      if (resp && resp.status === 200) {
         const data = await resp.json();
-        if(data){
+        if (data) {
           this.menuList = data;
         }
-        
       }
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
-
-.overview{
+.overview {
   word-spacing: 1em;
   text-align: left;
   font-size: medium;
@@ -153,25 +166,24 @@ export default {
   font-family: cursive;
 }
 
-
-body{
+body {
   background: #222222;
   margin: auto;
   overflow: hidden;
 }
 
-.wrapper{
+.wrapper {
   width: 800px;
   margin: auto;
   border: px;
   overflow: hidden;
 }
 
-.animation{
+.animation {
   font-size: larger;
   font-weight: bolder;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color:darkkhaki;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: darkkhaki;
   animation-name: rightToLeft;
   animation-duration: 4.5s;
   animation-timing-function: linear;

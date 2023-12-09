@@ -114,6 +114,7 @@ export default {
 
       picture: null,
       picturePreviewPath: null,
+      
       restaurantList: [],
     };
   },
